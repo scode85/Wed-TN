@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm ngày từ 5/9/2026 đến 26/6/2029</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a1a;
+            --bg-card: #151530;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0d0;
+            --accent: #6c63ff;
+            --accent-glow: #6c63ff55;
+            --success: #00e676;
+            --warning: #ffab00;
+            --danger: #ff5252;
+            --border: #2a2a50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, #1a1a3e 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, #1a1a3e 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, #0d0d2b 0%, transparent 50%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatUp 15s infinite linear;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle:nth-child(1) {
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        .particle:nth-child(2) {
+            left: 15%;
+            animation-delay: 2s;
+            animation-duration: 22s;
+        }
+        .particle:nth-child(3) {
+            left: 25%;
+            animation-delay: 4s;
+            animation-duration: 16s;
+        }
+        .particle:nth-child(4) {
+            left: 35%;
+            animation-delay: 1s;
+            animation-duration: 20s;
+        }
+        .particle:nth-child(5) {
+            left: 45%;
+            animation-delay: 5s;
+            animation-duration: 19s;
+        }
+        .particle:nth-child(6) {
+            left: 55%;
+            animation-delay: 3s;
+            animation-duration: 17s;
+        }
+        .particle:nth-child(7) {
+            left: 65%;
+            animation-delay: 6s;
+            animation-duration: 21s;
+        }
+        .particle:nth-child(8) {
+            left: 75%;
+            animation-delay: 2.5s;
+            animation-duration: 18s;
+        }
+        .particle:nth-child(9) {
+            left: 85%;
+            animation-delay: 4.5s;
+            animation-duration: 20s;
+        }
+        .particle:nth-child(10) {
+            left: 95%;
+            animation-delay: 1.5s;
+            animation-duration: 16s;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 35px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px var(--accent-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.6),
+                0 0 100px var(--accent-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border-color: #3a3a6a;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header .icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .date-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .date-box {
+            text-align: center;
+            padding: 15px 20px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            min-width: 140px;
+            transition: all 0.3s ease;
+        }
+
+        .date-box:hover {
+            border-color: var(--accent);
+            background: rgba(108, 99, 255, 0.08);
+        }
+
+        .date-box .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .date-box .date-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .date-box .date-value.start {
+            color: var(--warning);
+        }
+        .date-box .date-value.end {
+            color: var(--success);
+        }
+
+        .arrow-between {
+            font-size: 1.8rem;
+            color: var(--accent);
+            animation: arrowMove 2s ease-in-out infinite;
+            font-weight: 300;
+        }
+
+        @keyframes arrowMove {
+            0%,
+            100% {
+                transform: translateX(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(5px);
+                opacity: 1;
+            }
+        }
+
+        .status-badge {
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 28px;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .status-badge.before {
+            background: rgba(255, 171, 0, 0.12);
+            color: var(--warning);
+            border: 1px solid rgba(255, 171, 0, 0.3);
+        }
+        .status-badge.active {
+            background: rgba(0, 230, 118, 0.12);
+            color: var(--success);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+        }
+        .status-badge.after {
+            background: rgba(255, 82, 82, 0.12);
+            color: var(--danger);
+            border: 1px solid rgba(255, 82, 82, 0.3);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 20px 10px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.6;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .countdown-item:hover {
+            border-color: var(--accent);
+            background: rgba(108, 99, 255, 0.06);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+        }
+
+        .countdown-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.1;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px var(--accent-glow);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .total-days-display {
+            text-align: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(108, 99, 255, 0.06);
+            border: 1px solid rgba(108, 99, 255, 0.25);
+            margin-bottom: 25px;
+        }
+
+        .total-days-display .total-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .total-days-display .total-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 0 0 40px var(--accent-glow);
+            letter-spacing: 2px;
+        }
+
+        .total-days-display .total-unit {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .progress-container {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--warning), var(--accent), var(--success));
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px 18px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .header .icon {
+                font-size: 36px;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .date-info {
+                gap: 10px;
+            }
+            .date-box {
+                min-width: 110px;
+                padding: 10px 14px;
+            }
+            .date-box .date-value {
+                font-size: 0.95rem;
+            }
+
+            .total-days-display .total-number {
+                font-size: 2.2rem;
+            }
+
+            .arrow-between {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .countdown-item {
+                padding: 14px 6px;
+            }
+            .countdown-number {
+                font-size: 1.7rem;
+            }
+            .date-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .arrow-between {
+                transform: rotate(90deg);
+                animation: none;
+                margin: -5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="header">
+                <span class="icon">⏳</span>
+                <h1>Đếm Ngày Hành Trình</h1>
+                <p class="subtitle">Từ ngày 5/9/2026 đến ngày 26/6/2029</p>
+            </div>
+
+            <!-- Date Info -->
+            <div class="date-info">
+                <div class="date-box">
+                    <div class="label">📅 Ngày bắt đầu</div>
+                    <div class="date-value start">05/09/2026</div>
+                </div>
+                <span class="arrow-between">➜</span>
+                <div class="date-box">
+                    <div class="label">🎯 Ngày kết thúc</div>
+                    <div class="date-value end">26/06/2029</div>
+                </div>
+            </div>
+
+            <!-- Status Badge -->
+            <div id="statusBadge" class="status-badge before">Đang tải...</div>
+
+            <!-- Total Days Display -->
+            <div class="total-days-display">
+                <div class="total-label">📊 Tổng số ngày giữa hai mốc</div>
+                <div class="total-number" id="totalDaysNumber">0</div>
+                <div class="total-unit">ngày</div>
+            </div>
+
+            <!-- Countdown Grid -->
+            <div class="countdown-grid" id="countdownGrid">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdownDays">0</div>
+                    <div class="countdown-label">Ngày</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdownHours">0</div>
+                    <div class="countdown-label">Giờ</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdownMinutes">0</div>
+                    <div class="countdown-label">Phút</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="countdownSeconds">0</div>
+                    <div class="countdown-label">Giây</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressStartLabel">5/9/2026</span>
+                    <span id="progressPercent">0%</span>
+                    <span id="progressEndLabel">26/6/2029</span>
+                </div>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="footer-note">
+                ⏰ Cập nhật liên tục theo thời gian thực
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Define the key dates
+            const START_DATE = new Date(2026, 8, 5); // 5/9/2026 (month is 0-indexed: 8 = September)
+            const END_DATE = new Date(2029, 5, 26); // 26/6/2029 (month is 0-indexed: 5 = June)
+            const TOTAL_DAYS_MS = END_DATE.getTime() - START_DATE.getTime();
+            const TOTAL_DAYS = Math.ceil(TOTAL_DAYS_MS / (1000 * 60 * 60 * 24));
+
+            // DOM elements
+            const statusBadge = document.getElementById('statusBadge');
+            const countdownDays = document.getElementById('countdownDays');
+            const countdownHours = document.getElementById('countdownHours');
+            const countdownMinutes = document.getElementById('countdownMinutes');
+            const countdownSeconds = document.getElementById('countdownSeconds');
+            const totalDaysNumber = document.getElementById('totalDaysNumber');
+            const progressBarFill = document.getElementById('progressBarFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const countdownGrid = document.getElementById('countdownGrid');
+
+            // Display total days
+            totalDaysNumber.textContent = TOTAL_DAYS.toLocaleString('vi-VN');
+
+            // Format number with leading zero
+            function padZero(num) {
+                return num < 10 ? '0' + num : num;
+            }
+
+            // Update the countdown
+            function updateCountdown() {
+                const now = new Date();
+                const nowMs = now.getTime();
+                const startMs = START_DATE.getTime();
+                const endMs = END_DATE.getTime();
+
+                // Determine status
+                if (nowMs < startMs) {
+                    // Before start date
+                    statusBadge.className = 'status-badge before';
+                    const diffMs = startMs - nowMs;
+                    const daysUntilStart = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                    const hoursUntilStart = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutesUntilStart = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                    const secondsUntilStart = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+                    statusBadge.textContent =
+                        `⏳ Chưa bắt đầu — Còn ${daysUntilStart} ngày ${hoursUntilStart} giờ ${minutesUntilStart} phút ${secondsUntilStart} giây nữa đến ngày bắt đầu`;
+
+                    // Set countdown to show time until start
+                    countdownDays.textContent = daysUntilStart;
+                    countdownHours.textContent = padZero(hoursUntilStart);
+                    countdownMinutes.textContent = padZero(minutesUntilStart);
+                    countdownSeconds.textContent = padZero(secondsUntilStart);
+
+                    // Progress = 0%
+                    progressBarFill.style.width = '0%';
+                    progressPercent.textContent = '0%';
+
+                } else if (nowMs >= startMs && nowMs <= endMs) {
+                    // Within the countdown period
+                    statusBadge.className = 'status-badge active';
+                    const diffMs = endMs - nowMs;
+                    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+                    statusBadge.textContent =
+                        `🟢 Đang trong hành trình — Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây nữa`;
+
+                    countdownDays.textContent = days;
+                    countdownHours.textContent = padZero(hours);
+                    countdownMinutes.textContent = padZero(minutes);
+                    countdownSeconds.textContent = padZero(seconds);
+
+                    // Calculate progress
+                    const elapsedMs = nowMs - startMs;
+                    const progress = (elapsedMs / TOTAL_DAYS_MS) * 100;
+                    const clampedProgress = Math.min(100, Math.max(0, progress));
+                    progressBarFill.style.width = clampedProgress + '%';
+                    progressPercent.textContent = clampedProgress.toFixed(2) + '%';
+
+                } else {
+                    // After end date
+                    statusBadge.className = 'status-badge after';
+                    const diffMs = nowMs - endMs;
+                    const daysSinceEnd = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                    const hoursSinceEnd = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutesSinceEnd = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                    const secondsSinceEnd = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+                    statusBadge.textContent =
+                        `✅ Đã kết thúc — Đã qua ${daysSinceEnd} ngày ${hoursSinceEnd} giờ ${minutesSinceEnd} phút ${secondsSinceEnd} giây`;
+
+                    countdownDays.textContent = daysSinceEnd;
+                    countdownHours.textContent = padZero(hoursSinceEnd);
+                    countdownMinutes.textContent = padZero(minutesSinceEnd);
+                    countdownSeconds.textContent = padZero(secondsSinceEnd);
+
+                    // Progress = 100%
+                    progressBarFill.style.width = '100%';
+                    progressPercent.textContent = '100%';
+                }
+            }
+
+            // Initial call
+            updateCountdown();
+
+            // Update every second
+            setInterval(updateCountdown, 1000);
+
+            // Update progress labels
+            document.getElementById('progressStartLabel').textContent =
+                '5/9/2026';
+            document.getElementById('progressEndLabel').textContent =
+                '26/6/2029';
+        })();
+    </script>
+</body>
+</html>
